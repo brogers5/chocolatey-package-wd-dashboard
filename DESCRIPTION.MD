@@ -1,21 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Do not remove this test for UTF-8: if “Ω” doesn’t appear as greek uppercase omega letter enclosed in quotation marks, you should use an editor that supports UTF-8, not this one. -->
-<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
-  <metadata>
-    <id>wd-dashboard</id>
-    <version>3.6.2.7</version>
-    <packageSourceUrl>https://github.com/brogers5/chocolatey-package-wd-dashboard/tree/v3.6.2.7</packageSourceUrl>
-    <owners>sublym0nal</owners>
-    <title>Western Digital Dashboard</title>
-    <authors>Western Digital Corporation</authors>
-    <projectUrl>https://support.wdc.com/downloads.aspx?p=279</projectUrl>
-    <iconUrl>https://cdn.jsdelivr.net/gh/brogers5/chocolatey-package-wd-dashboard@822fda585aebfa11c51fc1ff3dd6390195f458a5/wd-dashboard.png</iconUrl>
-    <copyright>(c) 2022 Western Digital Corporation</copyright>
-    <docsUrl>https://support-en.wd.com/app/answers/detail/a_id/32803/related/1</docsUrl>
-    <mailingListUrl>https://community.wd.com/c/wd-ssd-products/215</mailingListUrl>
-    <tags>western-digital sandisk dashboard hdd ssd dock nvme pcie usb thunderbolt trim firmware smart rgb freeware</tags>
-    <summary>Management software for disks and dock brands owned by Western Digital.</summary>
-    <description><![CDATA[
+
 ---
 ### [choco://wd-dashboard](choco://wd--dashboard)
 To use choco:// protocol URLs, install [(unofficial) choco:// Protocol support](https://chocolatey.org/packages/choco-protocol-support)
@@ -85,14 +68,3 @@ For future upgrade operations, consider opting into Chocolatey's `useRememberedA
 ```
 choco feature enable -n=useRememberedArgumentsForUpgrades
 ```
-]]></description>
-    <releaseNotes>https://wddashboarddownloads.wdc.com/wdDashboard/WesternDigitalDashboardReleaseNotes.pdf</releaseNotes>
-    <dependencies>
-      <dependency id="vcredist140" version="14.28.29325.2" />
-      <dependency id="autohotkey.portable" version="1.1.27.00" />
-    </dependencies>
-  </metadata>
-  <files>
-    <file src="tools\**" target="tools" />
-  </files>
-</package>
