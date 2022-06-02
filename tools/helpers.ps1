@@ -1,4 +1,12 @@
-﻿$registrySubkey = 'HKLM:\SOFTWARE\WOW6432Node\Western Digital\SSD Dashboard'
+﻿if ((Get-OSArchitectureWidth -Compare 64))
+{
+    $registrySubkey = 'HKLM:\SOFTWARE\WOW6432Node\Western Digital\SSD Dashboard'
+}
+else
+{
+    $registrySubkey = 'HKLM:\SOFTWARE\Western Digital\SSD Dashboard'
+} 
+
 $toolsDir = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
 
 function Get-ShouldInstall()
