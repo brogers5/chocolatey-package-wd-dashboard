@@ -9,7 +9,7 @@ $shouldInstall = Get-ShouldInstall -Version $softwareVersion
 
 if (!$shouldInstall -and !$env:ChocolateyForce)
 {
-  Write-Output "$softwareName is already installed."
+  Write-Output "$softwareName v$softwareVersion is already installed."
   Write-Output "Skipping download and execution of installer."
 }
 else
