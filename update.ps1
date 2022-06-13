@@ -31,9 +31,12 @@ function global:au_GetLatest {
     $page = Invoke-WebRequest -Uri $uri -UseBasicParsing -UserAgent $userAgent
     $url = $page.Links | Where-Object href -Match "DashboardSetupSA.exe" | Select-Object -First 1 -ExpandProperty href
 
-    $version = [Regex]::Matches($page.Content, "<span id=""WD_lblVersionSelected""> (\d\.\d\.\d\.\d)").Groups[1].Value
-
     $releaseNotes = $page.Links | Where-Object href -Match "WesternDigitalDashboardReleaseNotes.pdf" | Select-Object -First 1 -ExpandProperty href
+
+    $updateUri = 'https://wddashboarddownloads.wdc.com/wdDashboard/config/lista_updater.xml'
+    $page = Invoke-WebRequest -Uri $updateUri -UseBasicParsing -UserAgent $userAgent
+
+    $version = ([xml] $page.Content).lista.Application_Installer.version
 
     return @{
         URL32 = $url
