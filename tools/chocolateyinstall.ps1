@@ -15,31 +15,17 @@ if (!$shouldInstall -and !$env:ChocolateyForce)
 else
 {
   $installedVersion = Get-CurrentVersion
-  if ([Version] $installedVersion -ge [Version] $softwareVersion)
+  if ($null -ne $installedVersion)
   {
-    Write-Output "Current installed version (v$installedVersion) is newer or similar, uninstalling it first"
+    Write-Output "Current installed version (v$installedVersion) must be uninstalled first..."
     Uninstall-CurrentVersion
   }
 
   $pp = Get-PackageParameters
-
   if ($pp.Language)
   {
     Set-LanguageConfiguration -Language $pp.Language
   }
-
-  $ahkArgList = New-Object Collections.Generic.List[string]
-  $ahkArgList.Add($(Join-Path -Path $toolsDir -ChildPath 'install.ahk'))
-  if ($pp.Language)
-  {
-    $ahkArgList.Add("/language:$($pp.Language)")
-  }
-  if ($pp.Start)
-  {
-    $ahkArgList.Add("/start")
-  }
-  
-  Start-Process -FilePath 'AutoHotKey.exe' -ArgumentList $ahkArgList
 
   $packageArgs = @{
     packageName   = $env:ChocolateyPackageName
@@ -48,9 +34,30 @@ else
     softwareName  = $softwareName
     checksum      = '51609d35e122d2a1bf3c8ac86ac92b84aaf10e0b8804f3a2f750bff81fc21c6e'
     checksumType  = 'sha256'
-    silentArgs    = ''
+    silentArgs    = '-silent'
     validExitCodes= @(0)
   }
 
   Install-ChocolateyPackage @packageArgs
+
+  if ($pp.Start)
+  {
+    $installPath = Get-InstallPath
+    if ($null -eq $installPath)
+    {
+      Write-Warning "Cannot find install path - will not try to start $softwareName"
+    }
+    else
+    {
+      try
+      {
+        $exePath = Join-Path -Path $installPath -ChildPath "$softwareName.exe"
+        Start-Process -FilePath $exePath -ErrorAction Continue
+      }
+      catch
+      {
+        Write-Warning "$softwareName failed to start, please try to manually start it instead."
+      }
+    }
+  }
 }

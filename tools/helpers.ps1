@@ -5,9 +5,30 @@
 else
 {
     $registrySubkey = 'HKLM:\SOFTWARE\Western Digital\SSD Dashboard'
-} 
+}
 
-$toolsDir = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
+function Get-InstallPath()
+{
+    return Get-RegistryValue -ValueName 'InstallPath'
+}
+
+function Get-RegistryValue()
+{
+    param (
+        [Parameter(Mandatory = $true)]
+        [string] $ValueName
+    )
+
+    if (Test-Path -Path $registrySubkey)
+    {
+        if ((Get-ItemProperty $registrySubkey).PSObject.Properties.Name -contains $ValueName)
+        {
+            return (Get-ItemProperty -Path $registrySubkey -Name $ValueName).$ValueName
+        }
+    }
+  
+    return $null
+}
 
 function Set-LanguageConfiguration()
 {
@@ -79,15 +100,7 @@ function Get-ShouldInstall()
 
 function Get-CurrentVersion()
 {
-    if (Test-Path -Path $registrySubkey)
-    {
-        if ((Get-ItemProperty $registrySubkey).PSObject.Properties.Name -contains 'CurrentVersion')
-        {
-            return (Get-ItemProperty -Path $registrySubkey -Name 'CurrentVersion').CurrentVersion
-        }
-    }
-
-    return $null
+    return Get-RegistryValue -ValueName 'CurrentVersion'
 }
 
 function Uninstall-CurrentVersion()
@@ -104,14 +117,15 @@ function Uninstall-CurrentVersion()
 
     if ($keys.Count -eq 1)
     {
+        $sanitizedUninstallString = $keys[0].UninstallString.TrimEnd(' -uninstall')
+
         #When started from Program Files, the binary shells itself out to TEMP,
         #spawns a new process, then terminates. Kick off the shell operation first.
-        $installSource = $keys[0].UninstallString.TrimEnd(' -uninstall')
-        Start-ChocolateyProcessAsAdmin -ExeToRun $installSource
+        Start-ChocolateyProcessAsAdmin -ExeToRun $sanitizedUninstallString
 
-        $processName = [System.IO.Path]::GetFileNameWithoutExtension($installSource)
+        $processName = [System.IO.Path]::GetFileNameWithoutExtension($sanitizedUninstallString)
 
-        $tempProcess = Get-Process -Name $processName -ErrorAction SilentlyContinue
+        $tempProcess = Get-Process -Name $processName
 
         #Grab the temp copy's path, kill it, then restart it from Chocolatey
         $tempProcessInfo = Get-Process -Id $tempProcess.Id -FileVersionInfo
@@ -119,9 +133,19 @@ function Uninstall-CurrentVersion()
         $packageArgs['file'] = $filePath
 
         Stop-Process -InputObject $tempProcess -Force
-
-        $ahkScriptPath = Join-Path -Path $toolsDir -ChildPath 'uninstall.ahk'
-        Start-Process -FilePath 'AutoHotKey.exe' -ArgumentList $ahkScriptPath
+        
+        $installedVersion = Get-CurrentVersion
+        if ([Version] $installedVersion -lt [Version] '3.7.2.4')
+        {
+            #Dashboard did not support a silent (un)install for this version.
+            #Script an unattended uninstall with AutoHotkey.
+            $ahkScriptPath = Join-Path -Path $toolsDir -ChildPath 'uninstall.ahk'
+            Start-Process -FilePath 'AutoHotKey.exe' -ArgumentList $ahkScriptPath
+        }
+        else
+        {
+            $packageArgs['silentArgs'] += ' -silent'
+        }
 
         Uninstall-ChocolateyPackage @packageArgs
 
