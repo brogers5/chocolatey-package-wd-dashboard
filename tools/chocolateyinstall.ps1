@@ -23,6 +23,11 @@ else
 
   $pp = Get-PackageParameters
 
+  if ($pp.Language)
+  {
+    Set-LanguageConfiguration -Language $pp.Language
+  }
+
   $ahkArgList = New-Object Collections.Generic.List[string]
   $ahkArgList.Add($(Join-Path -Path $toolsDir -ChildPath 'install.ahk'))
   if ($pp.Language)

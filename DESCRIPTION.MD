@@ -13,29 +13,29 @@ Enhance your gaming station with fully customizable RGB lighting on supported WD
 
 ## Package Parameters
 
-* `/language:LANGUAGE_STRING` - Overrides the default language configuration.
+* `/language:UI_STRING_OR_LANGUAGE_TAG` - Overrides the default language configuration.
 
     Supported languages include:
 
-    |Language String|Language Name|
-    |-|-|
-    |Čeština|Czech|
-    |Dansk|Danish|
-    |Deutsch|German|
-    |English|English|
-    |Español|Spanish|
-    |Françias|French|
-    |Italiano|Italian|
-    |日本語|Japanese|
-    |한국어|Korean|
-    |Nederlands|Dutch|
-    |Polski|Polish|
-    |Português|Portuguese|
-    |Pусский|Russian|
-    |Svenska|Swedish|
-    |Türkçe|Turkish|
-    |简体中文|Simplified Chinese|
-    |繁體中文|Traditional Chinese|
+    |UI String|Language Tag|Language Name|
+    |-|-|-|
+    |Čeština|cs-CZ|Czech|
+    |Dansk|da-DK|Danish|
+    |Deutsch|de-DE|German|
+    |English|en-US|English|
+    |Español|es-ES|Spanish|
+    |Françias|fr-FR|French|
+    |Italiano|it-IT|Italian|
+    |日本語|ja-JP|Japanese|
+    |한국어|ko-KR|Korean|
+    |Nederlands|nl-NL|Dutch|
+    |Polski|pl-PL|Polish|
+    |Português|pt-PT|Portuguese|
+    |Pусский|ru-RU|Russian|
+    |Svenska|sv-SE|Swedish|
+    |Türkçe|tr-TR|Turkish|
+    |简体中文|zh-CN|Simplified Chinese|
+    |繁體中文|zh-TW|Traditional Chinese|
 
 * `/start` - Automatically start Dashboard after the installation completes.
 
@@ -43,6 +43,10 @@ Enhance your gaming station with fully customizable RGB lighting on supported WD
 
 ```
 choco install wd-dashboard --params "/language:Español"
+```
+
+```
+choco install wd-dashboard --params "/language:fr-FR"
 ```
 
 ```
