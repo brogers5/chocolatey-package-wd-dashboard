@@ -7,18 +7,13 @@ else
     $registrySubkey = 'HKLM:\SOFTWARE\Western Digital\SSD Dashboard'
 }
 
-function Get-InstallPath()
+function Get-InstallPath
 {
     return Get-RegistryValue -ValueName 'InstallPath'
 }
 
-function Get-RegistryValue()
+function Get-RegistryValue($ValueName)
 {
-    param (
-        [Parameter(Mandatory = $true)]
-        [string] $ValueName
-    )
-
     if (Test-Path -Path $registrySubkey)
     {
         if ((Get-ItemProperty $registrySubkey).PSObject.Properties.Name -contains $ValueName)
@@ -30,13 +25,8 @@ function Get-RegistryValue()
     return $null
 }
 
-function Set-LanguageConfiguration()
+function Set-LanguageConfiguration($Language)
 {
-    param (
-        [Parameter(Mandatory = $true)]
-        [string] $Language
-    )
-
     $supportedLanguages = @{
         Čeština = 'cs-CZ'
         Dansk = 'da-DK'
@@ -79,13 +69,8 @@ function Set-LanguageConfiguration()
     New-ItemProperty -Name 'CurrentCulture' -Path $registrySubkey -PropertyType String -Value $localeString -Force | Out-Null
 }
 
-function Get-ShouldInstall()
-{
-    param (
-        [Parameter(Mandatory = $true)]
-        [string] $version
-    )
-  
+function Get-ShouldInstall($Version)
+{  
     if (Test-Path -Path $registrySubkey)
     {
         if (((Get-ItemProperty $registrySubkey).PSObject.Properties.Name -contains 'IsInstalled') -and `
@@ -98,12 +83,12 @@ function Get-ShouldInstall()
     return $true
 }
 
-function Get-CurrentVersion()
+function Get-CurrentVersion
 {
     return Get-RegistryValue -ValueName 'CurrentVersion'
 }
 
-function Uninstall-CurrentVersion()
+function Uninstall-CurrentVersion
 {
     $packageArgs = @{
         packageName   = $env:ChocolateyPackageName
