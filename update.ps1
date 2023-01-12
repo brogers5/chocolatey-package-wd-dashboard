@@ -9,10 +9,10 @@ function global:au_BeforeUpdate ($Package)  {
     $Latest.ChecksumType32 = 'sha256'
     $Latest.Checksum32 = (Get-FileHash -Path $filePath -Algorithm $Latest.ChecksumType32).Hash.ToLower()
 
-    Set-DescriptionFromReadme -Package $Package -ReadmePath ".\DESCRIPTION.md"
+    Set-DescriptionFromReadme -Package $Package -ReadmePath '.\DESCRIPTION.md'
 }
 
-function global:au_AfterUpdate ($Package) {
+function global:au_AfterUpdate {
 
 }
 
@@ -33,12 +33,12 @@ function global:au_SearchReplace {
 
 function global:au_GetLatest {
     $uri = 'https://support.wdc.com/downloads.aspx?p=279'
-    $userAgent = "Update checker of Chocolatey Community Package 'wd-dashboard'"
+    $userAgent = 'Update checker of Chocolatey Community Package ''wd-dashboard'''
 
     $page = Invoke-WebRequest -Uri $uri -UseBasicParsing -UserAgent $userAgent
-    $url = $page.Links | Where-Object href -Match "DashboardSetupSA.exe" | Select-Object -First 1 -ExpandProperty href
+    $url = $page.Links | Where-Object href -Match 'DashboardSetupSA.exe' | Select-Object -First 1 -ExpandProperty href
 
-    $releaseNotes = $page.Links | Where-Object href -Match "WesternDigitalDashboardReleaseNotes.pdf" | Select-Object -First 1 -ExpandProperty href
+    $releaseNotes = $page.Links | Where-Object href -Match 'WesternDigitalDashboardReleaseNotes.pdf' | Select-Object -First 1 -ExpandProperty href
 
     $updateUri = 'https://wddashboarddownloads.wdc.com/wdDashboard/config/lista_updater.xml'
     $page = Invoke-WebRequest -Uri $updateUri -UseBasicParsing -UserAgent $userAgent
