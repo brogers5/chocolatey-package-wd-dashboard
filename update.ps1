@@ -41,9 +41,9 @@ function global:au_GetLatest {
     $releaseNotes = $page.Links | Where-Object href -Match 'WesternDigitalDashboardReleaseNotes.pdf' | Select-Object -First 1 -ExpandProperty href
 
     $updateUri = 'https://wddashboarddownloads.wdc.com/wdDashboard/config/lista_updater.xml'
-    $page = Invoke-WebRequest -Uri $updateUri -UseBasicParsing -UserAgent $userAgent
+    $xmlDocument = Invoke-RestMethod -Uri $updateUri -UseBasicParsing -UserAgent $userAgent
 
-    $version = ([xml] $page.Content).lista.Application_Installer.version
+    $version = $xmlDocument.lista.Application_Installer.version
 
     return @{
         URL32 = $url
