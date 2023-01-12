@@ -63,19 +63,19 @@ Enhance your gaming station with fully customizable RGB lighting on supported WD
 ### Examples
 
 ```shell
-choco install wd-dashboard --params "/language:Español"
+choco install wd-dashboard --params="'/language:Español'"
 ```
 
 ```shell
-choco install wd-dashboard --params "/language:fr-FR"
+choco install wd-dashboard --params="'/language:fr-FR'"
 ```
 
 ```shell
-choco install wd-dashboard --params "/start"
+choco install wd-dashboard --params="'/start'"
 ```
 
 ```shell
-choco install wd-dashboard --params "/language:Deutsch /start"
+choco install wd-dashboard --params="'/language:Deutsch /start'"
 ```
 
 ## Package Notes
@@ -93,7 +93,7 @@ Legacy versions of Western Digital Dashboard's installer (i.e. prior to installe
 For future upgrade operations, consider opting into Chocolatey's `useRememberedArgumentsForUpgrades` feature to avoid having to pass the same arguments with each upgrade:
 
 ```shell
-choco feature enable -n=useRememberedArgumentsForUpgrades
+choco feature enable --name="'useRememberedArgumentsForUpgrades'"
 ```
 ]]></description>
     <releaseNotes>https://wddashboarddownloads.wdc.com/wdDashboard/WesternDigitalDashboardReleaseNotes.pdf</releaseNotes>
