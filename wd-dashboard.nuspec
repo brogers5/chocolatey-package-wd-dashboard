@@ -3,8 +3,8 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
     <id>wd-dashboard</id>
-    <version>3.7.2.5</version>
-    <packageSourceUrl>https://github.com/brogers5/chocolatey-package-wd-dashboard/tree/v3.7.2.5</packageSourceUrl>
+    <version>3.8.2.8</version>
+    <packageSourceUrl>https://github.com/brogers5/chocolatey-package-wd-dashboard/tree/v3.8.2.8</packageSourceUrl>
     <owners>sublym0nal</owners>
     <title>Western Digital Dashboard</title>
     <authors>Western Digital Corporation</authors>
@@ -17,10 +17,14 @@
     <summary>Management software for disks and dock brands owned by Western Digital.</summary>
     <description><![CDATA[
 ---
+
 ### [choco://wd-dashboard](choco://wd--dashboard)
-To use choco:// protocol URLs, install [(unofficial) choco:// Protocol support](https://chocolatey.org/packages/choco-protocol-support)
+
+To use choco:// protocol URLs, install [(unofficial) choco:// Protocol support](https://community.chocolatey.org/packages/choco-protocol-support)
 
 ---
+
+## Western Digital Dashboard
 
 The Western Digital Dashboard helps users maintain peak performance of Western Digital drives in Windows® operating systems with a user-friendly graphical interface. The Western Digital Dashboard includes tools for analysis of the disk (including the disk model, capacity, firmware version, and SMART attributes) and firmware updates.
 
@@ -58,31 +62,37 @@ Enhance your gaming station with fully customizable RGB lighting on supported WD
 
 ### Examples
 
-```
+```shell
 choco install wd-dashboard --params "/language:Español"
 ```
 
-```
+```shell
 choco install wd-dashboard --params "/language:fr-FR"
 ```
 
-```
+```shell
 choco install wd-dashboard --params "/start"
 ```
 
-```
+```shell
 choco install wd-dashboard --params "/language:Deutsch /start"
 ```
 
 ## Package Notes
-Western Digital does not provide a versioned download URL. This means the installer binary's checksum will periodically change, and a newly released software version will break this package version. Consequently, older package versions should generally be considered obsolete and unsupported.
+
+Western Digital does not provide a versioned download URL. This means the installer binary's checksum will periodically change, and a newly released software version will break this package version. Consequently, FOSS users should generally consider older package versions to be obsolete and unsupported. Obsolete package versions may be unlisted if the Chocolatey CDN has not cached the download before obsoletion.
 
 Consider [internalizing this package](https://docs.chocolatey.org/en-us/guides/create/recompile-packages) if you require a stable binary, or the ability to install this specific version after a new version is released.
 
 ---
 
+Legacy versions of Western Digital Dashboard's installer (i.e. prior to installer version 5.3.2.2 and application version 3.7.2.5) did not support a silent (un)installation option. Upgrade operations will typically require the currently installed version to be uninstalled first. To ensure compatibility with legacy installations, the package depends on [AutoHotkey](https://community.chocolatey.org/packages/autohotkey.portable) to implement a best-effort workaround of scripting an unattended uninstallation via GUI automation. GUI automation is not 100% reliable, and may occasionally fail or require manual input to complete.
+
+---
+
 For future upgrade operations, consider opting into Chocolatey's `useRememberedArgumentsForUpgrades` feature to avoid having to pass the same arguments with each upgrade:
-```
+
+```shell
 choco feature enable -n=useRememberedArgumentsForUpgrades
 ```
 ]]></description>

@@ -4,7 +4,7 @@ $toolsDir = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
 . $toolsDir\helpers.ps1
 
 $softwareName = 'Dashboard'
-$softwareVersion = '3.7.2.5'
+$softwareVersion = '3.8.2.8'
 $shouldInstall = Get-ShouldInstall -Version $softwareVersion
 
 if (!$shouldInstall -and !$env:ChocolateyForce)
@@ -32,7 +32,7 @@ else
     fileType      = 'EXE'
     url           = 'https://wddashboarddownloads.wdc.com/wdDashboard/DashboardSetupSA.exe'
     softwareName  = $softwareName
-    checksum      = '197deece07f2ae04d65eb19bc61390896695ad848a0bdfa06bb1e8a6abb52493'
+    checksum      = 'dce31ab11c3259dbc1febf6d1696f738cfa3c9346fca0415b488be91d374098d'
     checksumType  = 'sha256'
     silentArgs    = '-silent'
     validExitCodes= @(0)
