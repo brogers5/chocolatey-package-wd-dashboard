@@ -1,9 +1,13 @@
 
 ---
+
 ### [choco://wd-dashboard](choco://wd--dashboard)
+
 To use choco:// protocol URLs, install [(unofficial) choco:// Protocol support](https://community.chocolatey.org/packages/choco-protocol-support)
 
 ---
+
+## Western Digital Dashboard
 
 The Western Digital Dashboard helps users maintain peak performance of Western Digital drives in Windows® operating systems with a user-friendly graphical interface. The Western Digital Dashboard includes tools for analysis of the disk (including the disk model, capacity, firmware version, and SMART attributes) and firmware updates.
 
@@ -41,23 +45,24 @@ Enhance your gaming station with fully customizable RGB lighting on supported WD
 
 ### Examples
 
-```
+```shell
 choco install wd-dashboard --params "/language:Español"
 ```
 
-```
+```shell
 choco install wd-dashboard --params "/language:fr-FR"
 ```
 
-```
+```shell
 choco install wd-dashboard --params "/start"
 ```
 
-```
+```shell
 choco install wd-dashboard --params "/language:Deutsch /start"
 ```
 
 ## Package Notes
+
 Western Digital does not provide a versioned download URL. This means the installer binary's checksum will periodically change, and a newly released software version will break this package version. Consequently, older package versions should generally be considered obsolete and unsupported.
 
 Consider [internalizing this package](https://docs.chocolatey.org/en-us/guides/create/recompile-packages) if you require a stable binary, or the ability to install this specific version after a new version is released.
@@ -69,6 +74,7 @@ Legacy versions of Western Digital Dashboard's installer (i.e. prior to installe
 ---
 
 For future upgrade operations, consider opting into Chocolatey's `useRememberedArgumentsForUpgrades` feature to avoid having to pass the same arguments with each upgrade:
-```
+
+```shell
 choco feature enable -n=useRememberedArgumentsForUpgrades
 ```
