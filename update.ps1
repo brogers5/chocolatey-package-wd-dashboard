@@ -25,8 +25,9 @@ function global:au_SearchReplace {
             "(^[$]?\s*checksumType\s*=\s*)('.*')" = "`$1'$($Latest.ChecksumType32.ToLower())'"
         }
         "$($Latest.PackageName).nuspec" = @{
-            "(<packageSourceUrl>)[^<]*(</packageSourceUrl>)" = "`$1https://github.com/brogers5/chocolatey-package-$($Latest.PackageName)/tree/v$($Latest.Version)`$2"
-            "(\<releaseNotes\>).*?(\</releaseNotes\>)" = "`${1}$($Latest.ReleaseNotes)`$2"
+            '(<packageSourceUrl>)[^<]*(</packageSourceUrl>)' = "`$1https://github.com/brogers5/chocolatey-package-$($Latest.PackageName)/tree/v$($Latest.Version)`$2"
+            '(\<releaseNotes\>).*?(\</releaseNotes\>)' = "`${1}$($Latest.ReleaseNotes)`$2"
+            '(<copyright>)[^<]*(</copyright>)' = "`$1(c) $($(Get-Date -Format yyyy)) Western Digital Corporation`$2"
         }
     }
 }
