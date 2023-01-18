@@ -3,8 +3,8 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
     <id>wd-dashboard</id>
-    <version>3.8.2.8</version>
-    <packageSourceUrl>https://github.com/brogers5/chocolatey-package-wd-dashboard/tree/v3.8.2.8</packageSourceUrl>
+    <version>3.8.2.9</version>
+    <packageSourceUrl>https://github.com/brogers5/chocolatey-package-wd-dashboard/tree/v3.8.2.9</packageSourceUrl>
     <owners>sublym0nal</owners>
     <title>Western Digital Dashboard</title>
     <authors>Western Digital Corporation</authors>
