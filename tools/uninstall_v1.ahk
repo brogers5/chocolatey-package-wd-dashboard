@@ -1,5 +1,7 @@
 #NoEnv
 #NoTrayIcon
+#SingleInstance Force
+#Warn
 DetectHiddenWindows, off
 SetWinDelay, 100
 SetTitleMatchMode, 3 ;Exact
