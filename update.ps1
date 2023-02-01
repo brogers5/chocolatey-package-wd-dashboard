@@ -1,5 +1,7 @@
 Import-Module au
 
+$currentPath = (Split-Path $MyInvocation.MyCommand.Definition)
+
 function global:au_BeforeUpdate ($Package)  {
     #Archive this version for future development, since Western Digital only keeps the latest version available
     $filePath = ".\DashboardSetupSA_$($Latest.Version).exe"
@@ -8,6 +10,14 @@ function global:au_BeforeUpdate ($Package)  {
     #Avoid executing chocolateyInstall.ps1 to accommodate environments with the software installed
     $Latest.ChecksumType32 = 'sha256'
     $Latest.Checksum32 = (Get-FileHash -Path $filePath -Algorithm $Latest.ChecksumType32).Hash.ToLower()
+    
+    $installScriptPath = Join-Path -Path $currentPath -ChildPath 'tools' | Join-Path -ChildPath 'chocolateyInstall.ps1'
+    $installScriptChecksum = (Select-String -Path $installScriptPath -Pattern "(^[$]?\s*checksum\s*=\s*)('(.*)')").Matches.Groups[3].Value
+    if ($installScriptChecksum -eq $Latest.Checksum32)
+    {
+        Remove-Item -Path $filePath -Force
+        throw "$($Latest.PackageName) v$($Latest.Version) has been published, but the binary used by the package hasn't been updated yet!"
+    }
 
     Set-DescriptionFromReadme -Package $Package -ReadmePath '.\DESCRIPTION.md'
 }
@@ -53,4 +63,9 @@ function global:au_GetLatest {
     }
 }
 
-Update-Package -ChecksumFor None -NoReadme
+try {
+    Update-Package -ChecksumFor None -NoReadme
+} catch {
+    $ignore = 'the binary used by the package hasn''t been updated yet!'
+    if ($_ -match $ignore) { Write-Warning $_ ; 'ignore' }  else { throw $_ }
+}
