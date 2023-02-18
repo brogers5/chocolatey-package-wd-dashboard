@@ -11,7 +11,7 @@
     <projectUrl>https://support.wdc.com/downloads.aspx?p=279</projectUrl>
     <iconUrl>https://cdn.jsdelivr.net/gh/brogers5/chocolatey-package-wd-dashboard@822fda585aebfa11c51fc1ff3dd6390195f458a5/wd-dashboard.png</iconUrl>
     <copyright>(c) 2023 Western Digital Corporation</copyright>
-    <docsUrl>https://support-en.wd.com/app/answers/detail/a_id/32803/related/1</docsUrl>
+    <docsUrl>https://support-en.wd.com/app/answers/detailweb/a_id/32803/related/1</docsUrl>
     <mailingListUrl>https://community.wd.com/c/wd-ssd-products/215</mailingListUrl>
     <tags>western-digital sandisk dashboard hdd ssd dock nvme pcie usb thunderbolt trim firmware smart rgb freeware</tags>
     <summary>Management software for disks and dock brands owned by Western Digital.</summary>
