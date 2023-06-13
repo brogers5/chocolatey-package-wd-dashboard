@@ -3,6 +3,19 @@ Import-Module au
 $currentPath = (Split-Path $MyInvocation.MyCommand.Definition)
 
 function global:au_BeforeUpdate ($Package) {
+    #Check whether the ETag value has changed before proceeding with a checksum verification
+    $headRequest = Invoke-WebRequest -Uri $Latest.Url32 -Method Head
+    $currentETagValue = $headRequest.Headers["ETag"]
+    $etagFilePath = Join-Path -Path $currentPath -ChildPath 'ETag.txt'
+
+    $lastETagInfo = (Get-Content -Path $etagFilePath -Encoding UTF8 -TotalCount 1) -split '\|'
+    if (!$global:au_Force -and $lastETagInfo[1] -eq $currentETagValue) {
+        throw "$($Latest.PackageName) v$($Latest.Version) has been published, but the binary used by the package does not appear to have been updated yet!"
+    }
+    else {
+        "$($Latest.Version)|$currentETagValue" | Out-File -FilePath $etagFilePath -Encoding UTF8
+    }
+
     #Archive this version for future development, since Western Digital only keeps the latest version available
     $filePath = ".\DashboardSetupSA_$($Latest.Version).exe"
     Invoke-WebRequest -Uri $Latest.Url32 -OutFile $filePath
@@ -66,6 +79,6 @@ try {
     Update-Package -ChecksumFor None -NoReadme
 }
 catch {
-    $ignore = 'the binary used by the package hasn''t been updated yet!'
+    $ignore = 'the binary used by the package (does not appear to have|hasn''t) been updated yet!'
     if ($_ -match $ignore) { Write-Warning $_ ; 'ignore' }  else { throw $_ }
 }
