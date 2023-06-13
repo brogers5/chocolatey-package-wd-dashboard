@@ -1,10 +1,11 @@
 Import-Module au
 
 $currentPath = (Split-Path $MyInvocation.MyCommand.Definition)
+$userAgent = 'Update checker of Chocolatey Community Package ''wd-dashboard'''
 
 function global:au_BeforeUpdate ($Package) {
     #Check whether the ETag value has changed before proceeding with a checksum verification
-    $headRequest = Invoke-WebRequest -Uri $Latest.Url32 -Method Head
+    $headRequest = Invoke-WebRequest -Uri $Latest.Url32 -Method Head -UserAgent $userAgent
     $currentETagValue = $headRequest.Headers["ETag"]
     $etagFilePath = Join-Path -Path $currentPath -ChildPath 'ETag.txt'
 
@@ -18,7 +19,7 @@ function global:au_BeforeUpdate ($Package) {
 
     #Archive this version for future development, since Western Digital only keeps the latest version available
     $filePath = ".\DashboardSetupSA_$($Latest.Version).exe"
-    Invoke-WebRequest -Uri $Latest.Url32 -OutFile $filePath
+    Invoke-WebRequest -Uri $Latest.Url32 -OutFile $filePath -UserAgent $userAgent
     
     #Avoid executing chocolateyInstall.ps1 to accommodate environments with the software installed
     $Latest.ChecksumType32 = 'sha256'
@@ -56,7 +57,6 @@ function global:au_SearchReplace {
 
 function global:au_GetLatest {
     $uri = 'https://support.wdc.com/downloads.aspx?p=279'
-    $userAgent = 'Update checker of Chocolatey Community Package ''wd-dashboard'''
 
     $page = Invoke-WebRequest -Uri $uri -UseBasicParsing -UserAgent $userAgent
     $url = $page.Links | Where-Object href -Match 'DashboardSetupSA.exe' | Select-Object -First 1 -ExpandProperty href
