@@ -12,7 +12,7 @@ function global:au_BeforeUpdate ($Package) {
     $etagFilePath = Join-Path -Path $currentPath -ChildPath 'ETag.txt'
 
     $lastETagInfo = (Get-Content -Path $etagFilePath -Encoding UTF8 -TotalCount 1) -split '\|'
-    if (!$global:au_Force -and $lastETagInfo[1] -eq $currentETagValue) {
+    if (!($global:au_Force -or $Force) -and $lastETagInfo[1] -eq $currentETagValue) {
         throw "$($Latest.PackageName) v$($Latest.Version) has been published, but the binary used by the package does not appear to have been updated yet!"
     }
     else {
@@ -29,7 +29,7 @@ function global:au_BeforeUpdate ($Package) {
     
     $installScriptPath = Join-Path -Path $currentPath -ChildPath 'tools' | Join-Path -ChildPath 'chocolateyInstall.ps1'
     $installScriptChecksum = (Select-String -Path $installScriptPath -Pattern "(^[$]?\s*checksum\s*=\s*)('(.*)')").Matches.Groups[3].Value
-    if ($installScriptChecksum -eq $Latest.Checksum32) {
+    if (!($global:au_Force -or $Force) -and $installScriptChecksum -eq $Latest.Checksum32) {
         Remove-Item -Path $filePath -Force
         throw "$($Latest.PackageName) v$($Latest.Version) has been published, but the binary used by the package hasn't been updated yet!"
     }
