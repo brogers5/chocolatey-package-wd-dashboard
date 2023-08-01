@@ -1,3 +1,5 @@
+[CmdletBinding()]
+param([switch] $Force)
 Import-Module au
 
 $currentPath = (Split-Path $MyInvocation.MyCommand.Definition)
@@ -76,7 +78,7 @@ function global:au_GetLatest {
 }
 
 try {
-    Update-Package -ChecksumFor None -NoReadme
+    Update-Package -ChecksumFor None -NoReadme -Force:$Force
 }
 catch {
     $ignore = 'the binary used by the package (does not appear to have|hasn''t) been updated yet!'
