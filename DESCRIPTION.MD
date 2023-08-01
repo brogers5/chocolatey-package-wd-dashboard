@@ -13,7 +13,7 @@ The Western Digital Dashboard helps users maintain peak performance of Western D
 
 Enhance your gaming station with fully customizable RGB lighting on supported WD_BLACK products, designed to match your style with various colors and thirteen different LED pattern effects to choose from. Or, seamlessly integrate with your existing ASUS Aura Sync on Armoury Crate, GIGABYTE RGB Fusion 2.0, MSI Mystic Light, or Razer Chroma™ RGB ecosystem.
 
-![Dashboard Screenshot](https://cdn.jsdelivr.net/gh/brogers5/chocolatey-package-wd-dashboard@1f424def2cab249062aa43fe1a4ae88d54f2507f/Screenshot.png)
+![Dashboard Screenshot](https://cdn.jsdelivr.net/gh/brogers5/chocolatey-package-wd-dashboard@549dc3ff1dd1bae64a9e5e5bd81d49816f2a46b5/Screenshot.png)
 
 ## Package Parameters
 
