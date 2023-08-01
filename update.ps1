@@ -8,7 +8,7 @@ $userAgent = 'Update checker of Chocolatey Community Package ''wd-dashboard'''
 function global:au_BeforeUpdate ($Package) {
     #Check whether the ETag value has changed before proceeding with a checksum verification
     $headRequest = Invoke-WebRequest -Uri $Latest.Url32 -Method Head -UserAgent $userAgent
-    $currentETagValue = $headRequest.Headers["ETag"]
+    $currentETagValue = $headRequest.Headers['ETag']
     $etagFilePath = Join-Path -Path $currentPath -ChildPath 'ETag.txt'
 
     $lastETagInfo = (Get-Content -Path $etagFilePath -Encoding UTF8 -TotalCount 1) -split '\|'
