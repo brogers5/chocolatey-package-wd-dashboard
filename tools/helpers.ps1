@@ -89,7 +89,7 @@ function Uninstall-CurrentVersion {
 
         #When started from Program Files, the binary shells itself out to TEMP,
         #spawns a new process, then terminates. Kick off the shell operation first.
-        Start-ChocolateyProcessAsAdmin -ExeToRun $sanitizedUninstallString
+        Start-ChocolateyProcessAsAdmin -ExeToRun $sanitizedUninstallString -ValidExitCodes (-1, 0)
 
         $processName = [System.IO.Path]::GetFileNameWithoutExtension($sanitizedUninstallString)
 
