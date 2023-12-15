@@ -5,6 +5,16 @@ Import-Module au
 $currentPath = (Split-Path $MyInvocation.MyCommand.Definition)
 $userAgent = 'Update checker of Chocolatey Community Package ''wd-dashboard'''
 
+function Set-DocumentVersion($RelativeFilePath) {
+    $fileContents = Get-Content -Path $RelativeFilePath -Encoding UTF8
+    $fileContents = $fileContents -replace '/blob/v.*\/', "/blob/v$($Latest.Version)/"
+
+    $encoding = New-Object System.Text.UTF8Encoding($false)
+    $output = $fileContents | Out-String
+    $absoluteFilePath = (Get-Item -Path $RelativeFilePath).FullName
+    [System.IO.File]::WriteAllText($absoluteFilePath, $output, $encoding)
+}
+
 function global:au_BeforeUpdate ($Package) {
     #Check whether the ETag value has changed before proceeding with a checksum verification
     $headRequest = Invoke-WebRequest -Uri $Latest.Url32 -Method Head -UserAgent $userAgent
@@ -34,7 +44,9 @@ function global:au_BeforeUpdate ($Package) {
         throw "$($Latest.PackageName) v$($Latest.Version) has been published, but the binary used by the package hasn't been updated yet!"
     }
 
-    Set-DescriptionFromReadme -Package $Package -ReadmePath '.\DESCRIPTION.md'
+    $descriptionRelativePath = '.\DESCRIPTION.md'
+    Set-DocumentVersion -RelativeFilePath $descriptionRelativePath
+    Set-DescriptionFromReadme -Package $Package -ReadmePath $descriptionRelativePath
 }
 
 function global:au_SearchReplace {
