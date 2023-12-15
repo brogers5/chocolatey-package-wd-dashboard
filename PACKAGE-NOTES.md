@@ -10,6 +10,18 @@ Legacy versions of Western Digital Dashboard's installer (i.e. prior to installe
 
 ---
 
+When Western Digital Dashboard is being silently uninstalled (during either a package upgrade or uninstall operation), you may see the following message printed to `stderr`:
+
+```shell
+ERROR: The process "Dashboard.exe" not found.
+```
+
+Note that this only refers to an uninstall step that involves terminating the process if it is currently running. If Dashboard is not currently running, it is not indicative of an error condition, and can be safely ignored.
+
+Because this is a non-critical error, it's recommended to ensure the `failOnStandardError` feature is disabled when upgrading/uninstalling this package.
+
+---
+
 For future upgrade operations, consider opting into Chocolatey's `useRememberedArgumentsForUpgrades` feature to avoid having to pass the same arguments with each upgrade:
 
 ```shell
