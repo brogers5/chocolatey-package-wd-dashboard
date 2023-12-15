@@ -11,12 +11,12 @@ function global:au_BeforeUpdate ($Package) {
     $currentETagValue = $headRequest.Headers['ETag']
     $etagFilePath = Join-Path -Path $currentPath -ChildPath 'ETag.txt'
 
-    $lastETagInfo = (Get-Content -Path $etagFilePath -Encoding UTF8 -TotalCount 1) -split '\|'
-    if (!($global:au_Force -or $Force) -and $lastETagInfo[1] -eq $currentETagValue) {
+    $lastETagValue = Get-Content -Path $etagFilePath -Encoding UTF8 -TotalCount 1
+    if (!($global:au_Force -or $Force) -and $lastETagValue -eq $currentETagValue) {
         throw "$($Latest.PackageName) v$($Latest.Version) has been published, but the binary used by the package does not appear to have been updated yet!"
     }
     else {
-        "$($Latest.Version)|$currentETagValue" | Out-File -FilePath $etagFilePath -Encoding UTF8
+        "$currentETagValue" | Out-File -FilePath $etagFilePath -Encoding UTF8
     }
 
     #Archive this version for future development, since Western Digital only keeps the latest version available
