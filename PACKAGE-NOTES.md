@@ -6,6 +6,10 @@ Consider [internalizing this package](https://docs.chocolatey.org/en-us/guides/c
 
 ---
 
+Two installer packages are published for Western Digital Dashboard: an online bootstrapper and offline (standalone) installer. This package consumes the offline installer to ensure the binary behaves consistently (i.e. always installs a given version), and to avoid an external dependency on connectivity to Western Digital's servers. Publishing of the offline installer package is occasionally delayed or skipped, so the packaged version may therefore lag behind what is offered via the software's update functionality (i.e. via the online bootstrapper).
+
+---
+
 Legacy versions of Western Digital Dashboard's installer (i.e. prior to installer version 5.3.2.2 and application version 3.7.2.5) did not support a silent (un)installation option. Upgrade operations will typically require the currently installed version to be uninstalled first. To ensure compatibility with legacy installations, the package depends on [AutoHotkey](https://community.chocolatey.org/packages/autohotkey.portable) to implement a best-effort workaround of scripting an unattended uninstallation via GUI automation. GUI automation is not 100% reliable, and may occasionally fail or require manual input to complete.
 
 ---
