@@ -59,19 +59,16 @@ function global:au_SearchReplace {
         }
         "$($Latest.PackageName).nuspec" = @{
             '(<packageSourceUrl>)[^<]*(</packageSourceUrl>)' = "`$1https://github.com/brogers5/chocolatey-package-$($Latest.PackageName)/tree/v$($Latest.Version)`$2"
-            '(\<releaseNotes\>).*?(\</releaseNotes\>)'       = "`${1}$($Latest.ReleaseNotes)`$2"
             '(<copyright>)[^<]*(</copyright>)'               = "`$1(c) $($(Get-Date -Format yyyy)) Western Digital Corporation`$2"
         }
     }
 }
 
 function global:au_GetLatest {
-    $uri = 'https://support.wdc.com/downloads.aspx?p=279'
+    $uri = 'https://support-en.wd.com/app/answers/detailweb/a_id/31759/related/1'
 
     $page = Invoke-WebRequest -Uri $uri -UseBasicParsing -UserAgent $userAgent
     $url = $page.Links | Where-Object href -Match 'DashboardSetupSA.exe' | Select-Object -First 1 -ExpandProperty href
-
-    $releaseNotes = $page.Links | Where-Object href -Match 'WesternDigitalDashboardReleaseNotes.pdf' | Select-Object -First 1 -ExpandProperty href
 
     $updateUri = 'https://wddashboarddownloads.wdc.com/wdDashboard/config/lista_updater.xml'
     $xmlDocument = Invoke-RestMethod -Uri $updateUri -UseBasicParsing -UserAgent $userAgent
@@ -79,9 +76,8 @@ function global:au_GetLatest {
     $version = $xmlDocument.lista.Application_Installer.version
 
     return @{
-        URL32        = $url
-        Version      = $version
-        ReleaseNotes = $releaseNotes
+        URL32   = $url
+        Version = $version
     }
 }
 
