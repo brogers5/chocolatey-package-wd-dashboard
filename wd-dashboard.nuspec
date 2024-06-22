@@ -3,28 +3,19 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
     <id>wd-dashboard</id>
-    <version>4.1.2.4</version>
-    <packageSourceUrl>https://github.com/brogers5/chocolatey-package-wd-dashboard/tree/v4.1.2.4</packageSourceUrl>
+    <version>4.2.2.5</version>
+    <packageSourceUrl>https://github.com/brogers5/chocolatey-package-wd-dashboard/tree/v4.2.2.5</packageSourceUrl>
     <owners>sublym0nal</owners>
     <title>Western Digital Dashboard</title>
     <authors>Western Digital Corporation</authors>
     <projectUrl>https://support-en.wd.com/app/answers/detailweb/a_id/31759/related/1</projectUrl>
     <iconUrl>https://cdn.jsdelivr.net/gh/brogers5/chocolatey-package-wd-dashboard@822fda585aebfa11c51fc1ff3dd6390195f458a5/wd-dashboard.png</iconUrl>
-    <copyright>(c) 2023 Western Digital Corporation</copyright>
+    <copyright>(c) 2024 Western Digital Corporation</copyright>
     <docsUrl>https://support-en.wd.com/app/answers/detailweb/a_id/32803/related/1</docsUrl>
     <mailingListUrl>https://community.wd.com/c/wd-ssd-products/215</mailingListUrl>
     <tags>western-digital sandisk dashboard hdd ssd dock nvme pcie usb thunderbolt trim firmware smart rgb freeware</tags>
     <summary>Management software for disks and dock brands owned by Western Digital.</summary>
-    <description><![CDATA[
----
-
-### [choco://wd-dashboard](choco://wd--dashboard)
-
-To use choco:// protocol URLs, install [(unofficial) choco:// Protocol support](https://community.chocolatey.org/packages/choco-protocol-support)
-
----
-
-## Western Digital Dashboard
+    <description><![CDATA[## Western Digital Dashboard
 
 The Western Digital Dashboard helps users maintain peak performance of Western Digital drives in Windows® operating systems with a user-friendly graphical interface. The Western Digital Dashboard includes tools for analysis of the disk (including the disk model, capacity, firmware version, and SMART attributes) and firmware updates.
 
@@ -78,7 +69,7 @@ choco install wd-dashboard --params="'/start'"
 choco install wd-dashboard --params="'/language:Deutsch /start'"
 ```
 
-## [Package Notes](https://github.com/brogers5/chocolatey-package-wd-dashboard/blob/v4.1.2.4/PACKAGE-NOTES.md)
+## [Package Notes](https://github.com/brogers5/chocolatey-package-wd-dashboard/blob/v4.2.2.5/PACKAGE-NOTES.md)
 ]]></description>
     <releaseNotes>https://wddashboarddownloads.wdc.com/wdDashboard/WesternDigitalDashboardReleaseNotes.pdf</releaseNotes>
     <dependencies>
