@@ -3,8 +3,8 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
     <id>wd-dashboard</id>
-    <version>4.2.2.5</version>
-    <packageSourceUrl>https://github.com/brogers5/chocolatey-package-wd-dashboard/tree/v4.2.2.5</packageSourceUrl>
+    <version>4.3.2.4</version>
+    <packageSourceUrl>https://github.com/brogers5/chocolatey-package-wd-dashboard/tree/v4.3.2.4</packageSourceUrl>
     <owners>sublym0nal</owners>
     <title>Western Digital Dashboard</title>
     <authors>Western Digital Corporation</authors>
@@ -69,7 +69,7 @@ choco install wd-dashboard --params="'/start'"
 choco install wd-dashboard --params="'/language:Deutsch /start'"
 ```
 
-## [Package Notes](https://github.com/brogers5/chocolatey-package-wd-dashboard/blob/v4.2.2.5/PACKAGE-NOTES.md)
+## [Package Notes](https://github.com/brogers5/chocolatey-package-wd-dashboard/blob/v4.3.2.4/PACKAGE-NOTES.md)
 ]]></description>
     <releaseNotes>https://wddashboarddownloads.wdc.com/wdDashboard/WesternDigitalDashboardReleaseNotes.pdf</releaseNotes>
     <dependencies>

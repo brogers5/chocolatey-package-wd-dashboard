@@ -52,4 +52,4 @@ choco install wd-dashboard --params="'/start'"
 choco install wd-dashboard --params="'/language:Deutsch /start'"
 ```
 
-## [Package Notes](https://github.com/brogers5/chocolatey-package-wd-dashboard/blob/v4.2.2.5/PACKAGE-NOTES.md)
+## [Package Notes](https://github.com/brogers5/chocolatey-package-wd-dashboard/blob/v4.3.2.4/PACKAGE-NOTES.md)
