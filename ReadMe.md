@@ -31,7 +31,7 @@ Note that Chocolatey package builds are non-deterministic. Consequently, an inde
 
 ## Update
 
-This package should be automatically updated by the [Chocolatey Automatic Package Updater Module](https://github.com/majkinetor/au). If it is outdated by more than a few days, please [open an issue](https://github.com/brogers5/chocolatey-package-wd-dashboard/issues).
+This package has an update script implemented with the [Chocolatey Automatic Package Updater Module](https://github.com/majkinetor/au), but [as of January 23rd 2025, the project is no longer maintained](https://support-en.wd.com/app/answers/detailweb/a_id/52335), so it is not included with my normally scheduled update runs. If the project has a new release, please [open an issue](https://github.com/brogers5/chocolatey-package-wd-dashboard/issues).
 
 AU expects the parent directory that contains this repository to share a name with the Nuspec (`wd-dashboard`). Your local repository should therefore be cloned accordingly:
 
