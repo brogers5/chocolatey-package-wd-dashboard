@@ -3,81 +3,28 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
     <id>wd-dashboard</id>
-    <version>4.3.2.4</version>
-    <packageSourceUrl>https://github.com/brogers5/chocolatey-package-wd-dashboard/tree/v4.3.2.4</packageSourceUrl>
+    <version>5.0.2.3</version>
+    <packageSourceUrl>https://github.com/brogers5/chocolatey-package-wd-dashboard/tree/v5.0.2.3</packageSourceUrl>
     <owners>sublym0nal</owners>
-    <title>Western Digital Dashboard</title>
+    <title>[Deprecated] Western Digital Dashboard</title>
     <authors>Western Digital Corporation</authors>
     <projectUrl>https://support-en.wd.com/app/answers/detailweb/a_id/31759/related/1</projectUrl>
-    <iconUrl>https://cdn.jsdelivr.net/gh/brogers5/chocolatey-package-wd-dashboard@822fda585aebfa11c51fc1ff3dd6390195f458a5/wd-dashboard.png</iconUrl>
-    <copyright>(c) 2024 Western Digital Corporation</copyright>
-    <docsUrl>https://support-en.wd.com/app/answers/detailweb/a_id/32803/related/1</docsUrl>
-    <mailingListUrl>https://community.wd.com/c/wd-ssd-products/215</mailingListUrl>
-    <tags>western-digital sandisk dashboard hdd ssd dock nvme pcie usb thunderbolt trim firmware smart rgb freeware</tags>
-    <summary>Management software for disks and dock brands owned by Western Digital.</summary>
-    <description><![CDATA[## Western Digital Dashboard
+    <copyright>(c) 2025 Western Digital Corporation</copyright>
+    <tags>deprecated</tags>
+    <summary>⛔️ DEPRECATED</summary>
+    <description><![CDATA[# ⛔️ DEPRECATED
 
-The Western Digital Dashboard helps users maintain peak performance of Western Digital drives in Windows® operating systems with a user-friendly graphical interface. The Western Digital Dashboard includes tools for analysis of the disk (including the disk model, capacity, firmware version, and SMART attributes) and firmware updates.
+As a result of Western Digital having spun off its flash storage line of business, [development and support for Western Digital Dashboard has been discontinued](https://support-en.wd.com/app/answers/detailweb/a_id/52335) as of January 23rd, 2025.
 
-Enhance your gaming station with fully customizable RGB lighting on supported WD_BLACK products, designed to match your style with various colors and thirteen different LED pattern effects to choose from. Or, seamlessly integrate with your existing ASUS Aura Sync on Armoury Crate, GIGABYTE RGB Fusion 2.0, MSI Mystic Light, or Razer Chroma™ RGB ecosystem.
+Its successor is [SanDisk Dashboard (`sandisk-dashboard`)](https://community.chocolatey.org/packages/sandisk-dashboard), a rebranded version of Western Digital Dashboard that supports Western Digital's legacy flash-storage products (including those carrying either SanDisk or WD branding), but with HDD-related features removed.
 
-![Dashboard Screenshot](https://cdn.jsdelivr.net/gh/brogers5/chocolatey-package-wd-dashboard@549dc3ff1dd1bae64a9e5e5bd81d49816f2a46b5/Screenshot.png)
+As the upstream software has been superseded, this Chocolatey package has therefore been deprecated.
 
-## Package Parameters
-
-* `/language:UI_STRING_OR_LANGUAGE_TAG` - Overrides the default language configuration.
-
-    Supported languages include:
-
-    |UI String|Language Tag|Language Name|
-    |-|-|-|
-    |Čeština|cs-CZ|Czech|
-    |Dansk|da-DK|Danish|
-    |Deutsch|de-DE|German|
-    |English|en-US|English|
-    |Español|es-ES|Spanish|
-    |Françias|fr-FR|French|
-    |Italiano|it-IT|Italian|
-    |日本語|ja-JP|Japanese|
-    |한국어|ko-KR|Korean|
-    |Nederlands|nl-NL|Dutch|
-    |Polski|pl-PL|Polish|
-    |Português|pt-PT|Portuguese|
-    |Pусский|ru-RU|Russian|
-    |Svenska|sv-SE|Swedish|
-    |Türkçe|tr-TR|Turkish|
-    |简体中文|zh-CN|Simplified Chinese|
-    |繁體中文|zh-TW|Traditional Chinese|
-
-* `/start` - Automatically start Dashboard after the installation completes.
-
-### Examples
-
-```shell
-choco install wd-dashboard --params="'/language:Español'"
-```
-
-```shell
-choco install wd-dashboard --params="'/language:fr-FR'"
-```
-
-```shell
-choco install wd-dashboard --params="'/start'"
-```
-
-```shell
-choco install wd-dashboard --params="'/language:Deutsch /start'"
-```
-
-## [Package Notes](https://github.com/brogers5/chocolatey-package-wd-dashboard/blob/v4.3.2.4/PACKAGE-NOTES.md)
+If you require an alternative solution for Western Digital Dashboard's HDD-related features, consider installing [Western Digital Kitfox (`wd-kitfox`)](https://community.chocolatey.org/packages/wd-kitfox).
 ]]></description>
-    <releaseNotes>https://wddashboarddownloads.wdc.com/wdDashboard/WesternDigitalDashboardReleaseNotes.pdf</releaseNotes>
     <dependencies>
-      <dependency id="vcredist140" version="14.28.29325.2" />
-      <dependency id="autohotkey.portable" version="1.1.27.00" />
+      <dependency id="sandisk-dashboard" />
     </dependencies>
   </metadata>
-  <files>
-    <file src="tools\**" target="tools" />
-  </files>
+  <files />
 </package>

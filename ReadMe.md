@@ -1,4 +1,23 @@
-﻿# <img src="https://cdn.jsdelivr.net/gh/brogers5/chocolatey-package-wd-dashboard@822fda585aebfa11c51fc1ff3dd6390195f458a5/wd-dashboard.png" width="48" height="48"/> Chocolatey Package: [Western Digital Dashboard](https://community.chocolatey.org/packages/wd-dashboard)
+﻿[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
+
+# ⛔️ DEPRECATED
+
+As a result of Western Digital having spun off its flash storage line of business, [development and support for Western Digital Dashboard has been discontinued](https://support-en.wd.com/app/answers/detailweb/a_id/52335) as of January 23rd, 2025.
+
+Its successor is [SanDisk Dashboard (`sandisk-dashboard`)](https://community.chocolatey.org/packages/sandisk-dashboard), a rebranded version of Western Digital Dashboard that supports Western Digital's legacy flash-storage products (including those carrying either SanDisk or WD branding), but with HDD-related features removed.
+
+As the upstream software has been superseded, this Chocolatey package has therefore been deprecated.
+
+If you require an alternative solution for Western Digital Dashboard's HDD-related features, consider installing [Western Digital Kitfox (`wd-kitfox`)](https://community.chocolatey.org/packages/wd-kitfox).
+
+This repository will remain online only for archival purposes.
+
+>[!Warning]
+>Western Digital never provided a versioned download URL for Western Digital Dashboard, and its historical download URL at the time of deprecation mirrored the initial release of SanDisk Dashboard. Given that the Community Repository's CDN cache never cached the package's installer, any legacy package versions are unlikely to install successfully.
+
+---
+
+# Chocolatey Package: [Western Digital Dashboard](https://community.chocolatey.org/packages/wd-dashboard)
 
 [![Chocolatey package version](https://img.shields.io/chocolatey/v/wd-dashboard.svg)](https://community.chocolatey.org/packages/wd-dashboard)
 [![Chocolatey package download count](https://img.shields.io/chocolatey/dt/wd-dashboard.svg)](https://community.chocolatey.org/packages/wd-dashboard)
